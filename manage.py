@@ -7,6 +7,11 @@ import sys
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'evaluation_comic.settings')
+
+    # この2行を追加!
+    from django.db.backends.mysql.schema import DatabaseSchemaEditor
+    DatabaseSchemaEditor.sql_create_table += " ROW_FORMAT=DYNAMIC"
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
