@@ -1,16 +1,20 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import generic
-#from e_comic.models import User
 from e_comic.forms import NewUserForm
 
 class IndexView(generic.TemplateView):
   template_name = "index.html"
 
-def users(request): # form登録用のビュー
-    form = NewUserForm(request.POST or None) # formのインスタンス作成
+def users(request):
+    form = NewUserForm(request.POST or None)
 
-    if form.is_valid():
-        form.save(commit=True) # form.saveとするとデータが登録される
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponseRedirect('../')
     else:
         print('ERROR FORM INVALID')
-    return render(request, 'user.html', {'form': form})
+    context = {
+        'form' :form
+    }
+    return render(request, 'user.html', context)
