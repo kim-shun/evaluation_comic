@@ -4,8 +4,12 @@
 <div>
     <ul class="header">
         <li class="header-list">
+          <a class="top_page" href="{% url 'e_comic:index' %}">トップページ</a>
+        </li>
+        <li class="header-list">
             <a class="user_registration" href="{% url 'e_comic:users' %}">ユーザー登録</a>
         </li>
+        
     </ul>
 </div>
 {% endblock %}
