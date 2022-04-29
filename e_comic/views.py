@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from e_comic.forms import NewUserForm
-from e_comic.forms import NewComicForm
+from e_comic.forms import NewComicForm,ComicFormset
 from e_comic.models import Comic
 
 
@@ -27,14 +27,17 @@ def users(request):
 
 def comic_create(request):
     form = NewComicForm(request.POST or None)
-
+    context = {'form': form}
     if request.method == 'POST' and form.is_valid():
-        form.save()
-        return HttpResponseRedirect('../')
+        post = form.save(commit=False)
+        formset = ComicFormset(request.POST,instance=post) 
+        if formset.is_valid():
+            post.save()
+            formset.save()
+            return HttpResponseRedirect('../')
     else:
+        context['formset'] = ComicFormset()
         print('ERROR FORM INVALID')
-    context = {
-        'form' :form
-    }
+    
     return render(request, 'comic_create.html', context)
 

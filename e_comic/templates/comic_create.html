@@ -19,6 +19,12 @@
   <div class="jumbotron">
       <form method="POST">
           {{ form.as_p }}
+            {{ formset.management_form }}
+            {% for result_form in formset %}
+                {{ result_form.as_p }}
+                <hr>
+            {% endfor %}
+
           {% csrf_token %}
           <input type="submit" class="btn btn-primary" value="Submit">
       </form>

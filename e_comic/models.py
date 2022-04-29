@@ -1,5 +1,5 @@
 from django.db import models
-#from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator
 
 class User(models.Model):
     nickname = models.CharField(verbose_name="ニックネーム",max_length=100,null=False,unique=True)
@@ -11,14 +11,14 @@ class Comic(models.Model):
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
 
-# class ComicResult(models.Model):
-#     comic_name = models.ForeignKey(Comic,verbose_name="漫画名",max_length=128,null=False,on_delete=models.PROTECT)
-#     comic_score = models.PositiveSmallIntegerField(verbose_name="評点",validators=[MaxValueValidator(100)],null=False)
-#     comment = models.TextField(verbose_name="コメント",null=True)
-#     #evaluation_result_id = models.PositiveSmallIntegerField(verbose_name="評価結果ID",null=False,unique=True)
-#     nickname = models.ForeignKey(User,to_field="nickname",verbose_name="作成者",max_length=100,null=False,on_delete=models.PROTECT)
-#     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
-#     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+class ComicResult(models.Model):
+    comic_name = models.ForeignKey(Comic,verbose_name="漫画名",max_length=128,null=False,on_delete=models.PROTECT)
+    comic_score = models.PositiveSmallIntegerField(verbose_name="評点",validators=[MaxValueValidator(100)],null=False)
+    comment = models.TextField(verbose_name="コメント",null=True)
+    #evaluation_result_id = models.PositiveSmallIntegerField(verbose_name="評価結果ID",null=False,unique=True)
+    #nickname = models.ForeignKey(User,to_field="nickname",verbose_name="作成者",max_length=100,null=False,on_delete=models.PROTECT)
+    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
 
 # class EvaluationResult(models.Model):
 #     evaluation_result_id = models.ForeignKey(ComicResult,to_field='evaluation_result_id',verbose_name="評価結果ID",related_name="results",null=False,unique=True,on_delete=models.PROTECT)
