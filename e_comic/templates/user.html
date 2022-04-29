@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 {% block title %}ユーザー登録{% endblock %}
-{% block head %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-{% endblock %}
 {% block header%}
 <div>
     <ul class="header">
@@ -13,15 +10,15 @@
 </div>
 {% endblock %}
 {% block content %}
-    <h1>Please sign up here</h1>
-        <div class="container">
-            <div class="jumbotron">
-                <h1>welcome</h1>
-                <form method="POST">
-                    {{ form.as_p }}
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-primary" value="Submit">
-                </form>
-            </div>
-        </div>
+<h1>Please sign up here</h1>
+<div class="container">
+    <div class="jumbotron">
+        <h1>welcome</h1>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+</div>
 {% endblock %}

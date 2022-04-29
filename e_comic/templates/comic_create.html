@@ -15,4 +15,13 @@
 {% endblock %}
 {% block content %}
 <h1>漫画登録してね</h1>
+<div class="container">
+  <div class="jumbotron">
+      <form method="POST">
+          {{ form.as_p }}
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+  </div>
+</div>
 {% endblock %}

@@ -10,6 +10,9 @@
 </div>
 {% endblock %}
 {% block content %}
-<h1>Hello World</h1>
+<h1>トップページだよ</h1>
 <a class="user_registration" href="{% url 'e_comic:comic_create' %}">漫画登録</a>
+{% for comic in comic_list %}
+  <div>{{comic.comic_name}}</div>
+{% endfor %}
 {% endblock %}
