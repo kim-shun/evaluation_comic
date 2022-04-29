@@ -18,3 +18,6 @@ def users(request):
         'form' :form
     }
     return render(request, 'user.html', context)
+
+class ComicCreateView(generic.TemplateView):
+  template_name = "comic_create.html"
