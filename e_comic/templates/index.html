@@ -2,15 +2,11 @@
 {% block title %}トップページ{% endblock %}
 {% block header%}
 <div>
-    <ul class="header">
-        <li class="header-list">
-            <a class="user_registration" href="{% url 'e_comic:users' %}">ユーザー登録</a>
-        </li>
-    </ul>
+  <a class="user_registration" href="{% url 'e_comic:users' %}">ユーザー登録</a>
 </div>
 {% endblock %}
 {% block content %}
-<h1>トップページだよ</h1>
+<h1>トップページ</h1>
 <a class="user_registration" href="{% url 'e_comic:comic_create' %}">漫画登録</a>
 {% for comic in comic_list %}
   <table>

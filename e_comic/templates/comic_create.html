@@ -2,31 +2,23 @@
 {% block title %}漫画登録ページ{% endblock %}
 {% block header%}
 <div>
-    <ul class="header">
-        <li class="header-list">
-          <a class="top_page" href="{% url 'e_comic:index' %}">トップページ</a>
-        </li>
-        <li class="header-list">
-            <a class="user_registration" href="{% url 'e_comic:users' %}">ユーザー登録</a>
-        </li>
-        
-    </ul>
+  <a class="top_page" href="{% url 'e_comic:index' %}">トップページ</a>
+  <a class="user_registration" href="{% url 'e_comic:users' %}">ユーザー登録</a>
 </div>
 {% endblock %}
 {% block content %}
-<h1>漫画登録してね</h1>
+<h1>漫画を登録しよう</h1>
 <div class="container">
   <div class="jumbotron">
       <form method="POST">
           {{ form.as_p }}
             {{ formset.management_form }}
             {% for result_form in formset %}
-                {{ result_form.as_p }}
-                <hr>
+                {{ result_form.as_p }} 
             {% endfor %}
 
           {% csrf_token %}
-          <input type="submit" class="btn btn-primary" value="Submit">
+          <input type="submit" class="btn btn-primary" value="登録">
       </form>
   </div>
 </div>

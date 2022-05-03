@@ -12,11 +12,6 @@ class NewComicForm(forms.ModelForm):
         model = Comic
         fields = ('comic_name',)
 
-class NewComicResultForm(forms.ModelForm):
-    class Meta():
-        model = ComicResult
-        fields = ('comic_name','comic_score','comment')
-
 ComicFormset = forms.inlineformset_factory(
     Comic, ComicResult, fields='__all__',
     extra=1, can_delete=False
