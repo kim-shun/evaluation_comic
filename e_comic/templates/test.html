@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}テストページ{% endblock %}
+{% block header%}
+<div>
+  <a class="top_page" href="{% url 'e_comic:index' %}">トップページ</a>
+  <a class="user_registration" href="{% url 'e_comic:users' %}">ユーザー登録</a>
+</div>
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+  <table>{{form.as_table}}</table>
+</form>
+{% endblock %}

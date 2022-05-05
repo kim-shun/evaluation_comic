@@ -13,8 +13,8 @@
       <form method="POST">
           {{ form.as_p }}
             {{ formset.management_form }}
-            {% for result_form in formset %}
-                {{ result_form.as_p }} 
+            {% for evaluation_form in formset %}
+                {{ evaluation_form.as_p }} 
             {% endfor %}
 
           {% csrf_token %}

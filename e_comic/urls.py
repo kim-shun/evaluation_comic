@@ -6,4 +6,5 @@ urlpatterns = [
     path('',views.index,name="index"),
     path('users/',views.users,name="users"),
     path('comic-create/',views.comic_create,name="comic_create"),
+    path('test/',views.test,name="test"),
 ]

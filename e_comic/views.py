@@ -1,7 +1,7 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from e_comic.forms import NewUserForm
-from e_comic.forms import NewComicForm,ComicFormset
+from e_comic.forms import NewComicForm,ComicFormset,EvaluationChoiceForm
 from e_comic.models import Comic
 
 
@@ -41,3 +41,7 @@ def comic_create(request):
     
     return render(request, 'comic_create.html', context)
 
+def test(request):
+    form = EvaluationChoiceForm()
+    context =  {'form': form}
+    return render(request,'test.html',context)
