@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect,HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from e_comic.forms import NewUserForm
 from e_comic.forms import NewComicForm,ComicFormset,EvaluationChoiceForm
-from e_comic.models import Comic
+from e_comic.models import Comic,ComicEvaluation
+#from e_comic.services.SaveFormService import saveForm
 
 
 def index(request):
@@ -42,6 +43,32 @@ def comic_create(request):
     return render(request, 'comic_create.html', context)
 
 def test(request):
-    form = EvaluationChoiceForm()
-    context =  {'form': form}
-    return render(request,'test.html',context)
+    if request.method == 'POST':
+        input_comic_name = request.POST["comic_name"]
+        input_score = request.POST["score"]
+        input_comment = request.POST["comment"]
+        comic = Comic(comic_name=input_comic_name)
+        comic.save()
+        saved_comic_name = get_object_or_404(Comic,comic_name=input_comic_name)
+        comic_evaluation = ComicEvaluation(comic_score=input_score,comment=input_comment,comic_name=saved_comic_name)
+        comic_evaluation.save()
+        return HttpResponseRedirect('../')
+        #comment = request.POST["comment"]
+
+        # form = EvaluationChoiceForm(request.POST)
+        # context =  {'form': form}
+        # if form.is_valid():
+        #     comic_name = request.POST["comic_name"]
+        #     comment = request.POST["comment"]
+            # comic = Comic(**form.cleaned_data)
+            # comic_evaluation = ComicEvaluation(**form.cleaned_data)
+            # comic.save
+            # comic_evaluation.save
+
+            #save_form = saveForm(context)
+    # else:
+    #     form = EvaluationChoiceForm()
+    #     context =  {'form': form}
+    # print(context)
+    # return render(request,'test.html',context)
+    return render(request,'test.html')
