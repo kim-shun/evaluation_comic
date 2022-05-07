@@ -11,7 +11,58 @@
 <form method="POST">{% csrf_token %}
   <div>漫画名<input name="comic_name" type="text"/></div>
   <div>評点<input type="number" name="score"/></div>
-    <div>コメント<input type="text" name="comment"/></div>
+  <div>コメント<input type="text" name="comment"/></div>
+  <div>
+    <div>
+      <select name="item1">
+        {% for item in item_contents1 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <select name="item2">
+        {% for item in item_contents2 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <select name="item3">
+        {% for item in item_contents3 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <select name="item4">
+        {% for item in item_contents4 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <select name="item5">
+        {% for item in item_contents5 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <select name="item6">
+        {% for item in item_contents6 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <select name="item7">
+        {% for item in item_contents7 %}
+          <option value="{{item.evaluation_item_id}}">{{item.item_content}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
   <button type="submit">送信</button>
 </form>
 {% comment %} <form action="" method="post">
