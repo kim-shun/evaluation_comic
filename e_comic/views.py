@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render,get_object_or_404
 from e_comic.forms import NewUserForm
-from e_comic.forms import NewComicForm,ComicFormset,EvaluationChoiceForm
+from e_comic.forms import NewComicForm,ComicFormset
 from e_comic.models import Comic,ComicEvaluation
 #from e_comic.services.SaveFormService import saveForm
 
@@ -53,19 +53,9 @@ def test(request):
         comic_evaluation = ComicEvaluation(comic_score=input_score,comment=input_comment,comic_name=saved_comic_name)
         comic_evaluation.save()
         return HttpResponseRedirect('../')
-        #comment = request.POST["comment"]
-
-        # form = EvaluationChoiceForm(request.POST)
-        # context =  {'form': form}
-        # if form.is_valid():
-        #     comic_name = request.POST["comic_name"]
-        #     comment = request.POST["comment"]
-            # comic = Comic(**form.cleaned_data)
-            # comic_evaluation = ComicEvaluation(**form.cleaned_data)
-            # comic.save
-            # comic_evaluation.save
-
-            #save_form = saveForm(context)
+    #     form = EvaluationChoiceForm(request.POST)
+    #     context =  {'form': form}
+    #     return HttpResponseRedirect('../')
     # else:
     #     form = EvaluationChoiceForm()
     #     context =  {'form': form}
