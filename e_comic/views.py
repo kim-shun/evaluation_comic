@@ -48,5 +48,7 @@ def test(request):
         input_comic_name = request.POST["comic_name"]
         input_score = request.POST["score"]
         input_comment = request.POST["comment"]
+        input_item1 = request.POST["1"]
+        print(input_item1)
         saveForm(input_comic_name,input_score,input_comment)
     return render(request,'test.html',choice_items)

@@ -22,6 +22,7 @@ class EvaluationItem(models.Model):
 
 class EvaluationItemContents(models.Model):
     evaluation_item_contents_pk = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)
+    parent_fk = models.ForeignKey(EvaluationItem,verbose_name="親キー",db_column="parent_fk",related_name="contents",on_delete=models.PROTECT)
     evaluation_item_id = models.ForeignKey(EvaluationItem,to_field="evaluation_item_id",db_column="evaluation_item_id",verbose_name="評価項目ID",related_name="items",null=False,on_delete=models.PROTECT)
     item_content = models.CharField(verbose_name="項目内容名",max_length=50,null=False)
 
