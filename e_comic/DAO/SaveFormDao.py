@@ -1,6 +1,15 @@
 from django.shortcuts import get_object_or_404
 from e_comic.models import Comic,ComicEvaluation,EvaluationItem,ComicEvaluationDetail
 
+def getComicEvaluations():
+  comic_evaluation_list = ComicEvaluation.objects.all()
+  return comic_evaluation_list
+
+def getDateTime():
+  latest_time = ComicEvaluation.objects.latest("updated_at")
+  latest_time = latest_time.updated_at
+  return latest_time
+
 def choiceItem():
   evaluation_items = EvaluationItem.objects.all()
   return evaluation_items

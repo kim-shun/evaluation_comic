@@ -2,19 +2,30 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from e_comic.forms import NewUserForm
 from e_comic.forms import NewComicForm,ComicFormset
-from e_comic.models import Comic,ComicEvaluation
 from e_comic.services.SaveFormService import getChoiceItem,saveForm
-from e_comic.DAO.SaveFormDao import countChoiceItem,saveComicEvaluationDetail
-import csv
+from e_comic.DAO.SaveFormDao import getComicEvaluations,getDateTime,countChoiceItem,saveComicEvaluationDetail
+import csv,urllib
 
 def index(request):
-  comic_list = Comic.objects.all()
-  comic_evaluation_list = ComicEvaluation.objects.all()
+  comic_evaluation_list = getComicEvaluations()
   context = {
-    'comic_list' : comic_list,
     'comic_evaluation_list' : comic_evaluation_list,
   }
   return render(request, 'index.html', context)
+
+def csv_export(request):
+    response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
+    date_time = getDateTime()
+    str_time = date_time.strftime('%Y%m%d%H%M')
+    f = "漫画評価" + "_" + str_time + ".csv"
+    filename = urllib.parse.quote((f).encode("utf8"))
+    response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
+
+    writer = csv.writer(response)
+    comic_evaluation_list = getComicEvaluations()
+    for evaluation in comic_evaluation_list:
+        writer.writerow([evaluation.comic_name.comic_name, evaluation.comic_score,evaluation.comment,evaluation.created_at])
+    return response
 
 def users(request):
     form = NewUserForm(request.POST or None)
@@ -59,12 +70,3 @@ def test(request):
             saveComicEvaluationDetail(input_comic_name,input_item,i)
         return HttpResponseRedirect('../')
     return render(request,'test.html',choice_items)
-
-def csv_export(request):
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment;  filename="漫画評価.csv"'
-
-    writer = csv.writer(response)
-    for evaluation in ComicEvaluation.objects.all():
-        writer.writerow([evaluation.comic_name.comic_name, evaluation.comic_score,evaluation.comment,evaluation.created_at])
-    return response
