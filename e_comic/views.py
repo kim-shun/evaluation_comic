@@ -55,4 +55,5 @@ def test(request):
             i += 1
             input_item = request.POST[str(i)]
             saveComicEvaluationDetail(input_comic_name,input_item,i)
+        return HttpResponseRedirect('../')
     return render(request,'test.html',choice_items)

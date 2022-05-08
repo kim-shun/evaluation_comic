@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
-#from evaluation_comic import settings
 
 class User(models.Model):
     user_pk = models.UUIDField(primary_key=True, default=uuid.uuid4,editable=False)

@@ -1,4 +1,3 @@
-#from multiprocessing import context
 from e_comic.DAO.SaveFormDao import choiceItem,saveComic,saveComicEvaluation
 
 def getChoiceItem():
