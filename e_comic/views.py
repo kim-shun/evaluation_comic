@@ -2,8 +2,8 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from e_comic.forms import NewUserForm
 from e_comic.forms import NewComicForm,ComicFormset
-from e_comic.services.SaveFormService import getChoiceItem,saveForm
-from e_comic.DAO.SaveFormDao import getComicEvaluations,getDateTime,countChoiceItem,saveComicEvaluationDetail
+from e_comic.services.EComicService import getChoiceItem,saveForm
+from e_comic.DAO.EComicDao import getComicEvaluations,getDateTime,countChoiceItem,saveComicEvaluationDetail
 import csv,urllib
 
 def index(request):

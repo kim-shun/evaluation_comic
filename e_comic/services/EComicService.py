@@ -1,4 +1,4 @@
-from e_comic.DAO.SaveFormDao import choiceItem,saveComic,saveComicEvaluation
+from e_comic.DAO.EComicDao import choiceItem,saveComic,saveComicEvaluation
 
 def getChoiceItem():
   evaluation_items = choiceItem()
