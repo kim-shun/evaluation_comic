@@ -1,16 +1,18 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from e_comic.forms import NewUserForm
 from e_comic.forms import NewComicForm,ComicFormset
-from e_comic.models import Comic
+from e_comic.models import Comic,ComicEvaluation
 from e_comic.services.SaveFormService import getChoiceItem,saveForm
 from e_comic.DAO.SaveFormDao import countChoiceItem,saveComicEvaluationDetail
-
+import csv
 
 def index(request):
   comic_list = Comic.objects.all()
+  comic_evaluation_list = ComicEvaluation.objects.all()
   context = {
-    'comic_list' : comic_list
+    'comic_list' : comic_list,
+    'comic_evaluation_list' : comic_evaluation_list,
   }
   return render(request, 'index.html', context)
 
@@ -57,3 +59,12 @@ def test(request):
             saveComicEvaluationDetail(input_comic_name,input_item,i)
         return HttpResponseRedirect('../')
     return render(request,'test.html',choice_items)
+
+def csv_export(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment;  filename="漫画評価.csv"'
+
+    writer = csv.writer(response)
+    for evaluation in ComicEvaluation.objects.all():
+        writer.writerow([evaluation.comic_name.comic_name, evaluation.comic_score,evaluation.comment,evaluation.created_at])
+    return response
