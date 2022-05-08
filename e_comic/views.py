@@ -1,9 +1,10 @@
-from django.http import HttpResponseRedirect,HttpResponse
-from django.shortcuts import render,get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from e_comic.forms import NewUserForm
 from e_comic.forms import NewComicForm,ComicFormset
-from e_comic.models import Comic,ComicEvaluation
+from e_comic.models import Comic
 from e_comic.services.SaveFormService import getChoiceItem,saveForm
+from e_comic.DAO.SaveFormDao import countChoiceItem,saveComicEvaluationDetail
 
 
 def index(request):
@@ -48,7 +49,10 @@ def test(request):
         input_comic_name = request.POST["comic_name"]
         input_score = request.POST["score"]
         input_comment = request.POST["comment"]
-        input_item1 = request.POST["1"]
-        print(input_item1)
         saveForm(input_comic_name,input_score,input_comment)
+        count = countChoiceItem()
+        for i in range(count):
+            i += 1
+            input_item = request.POST[str(i)]
+            saveComicEvaluationDetail(input_comic_name,input_item,i)
     return render(request,'test.html',choice_items)

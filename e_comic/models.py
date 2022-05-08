@@ -40,5 +40,6 @@ class ComicEvaluationDetail(models.Model):
     parent_fk = models.ForeignKey(ComicEvaluation,verbose_name="親キー",db_column="parent_fk",on_delete=models.PROTECT)
     comic_name = models.ForeignKey(Comic,verbose_name="漫画名",to_field="comic_name",db_column="comic_name",related_name="c_names_detail",max_length=128,null=False,on_delete=models.PROTECT)
     evaluation_item_id = models.PositiveSmallIntegerField(verbose_name="評価項目ID",null=False)
+    item_content = models.CharField(verbose_name="評価項目内容",max_length=50,null=True)
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
