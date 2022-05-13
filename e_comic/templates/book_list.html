@@ -1,0 +1,34 @@
+{% extends "cms/base.html" %}
+{% load i18n static %}
+
+{% block title %}Django Study{% endblock title %}
+
+
+{% block content %}
+    Hello World!!
+    <a href="{% url 'cms:book_download' %}" class="btn btn-outline-primary btn-sm">ボタン</a>
+    <div>
+    {% with profile_form as f %}
+    <!-- <form action="{% url 'cms:book_add' %}" method="POST"> -->
+        <div id="name_id">{{ f.name }}</div>
+        <div id="age_id">{{ f.age }}</div>
+        <div id="sex_id">{{ f.sex }}</div>
+        
+        <input type="button" onclick="jsonPost('{% url 'cms:book_json' %}')" value="Json送信"/>
+    <!-- </form> -->
+    </div>
+    <br/>
+    <div>
+        <form action="{% url 'cms:book_form' %}" method="POST">
+            {% csrf_token %}
+            <div id="name_id">{{ f.name }}</div>
+            <div id="age_id">{{ f.age }}</div>
+            <div id="sex_id">{{ f.sex }}</div>
+            
+            <input type="submit" value="Form送信"/>
+        </form>
+    </div>
+    {% endwith %}
+
+    <script src="{% static 'cms/js/test.js' %}"></script>
+{% endblock content %}
