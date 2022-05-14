@@ -1,9 +1,11 @@
-from e_comic.DAO.EComicDao import choiceItem,saveComic,saveComicEvaluation
+from e_comic.DAO.EComicDao import choiceItem,selectComic,saveComic,saveComicEvaluation
 
-def getChoiceItem():
+def getDispItem():
   evaluation_items = choiceItem()
+  comics = selectComic()
   context = {
-    "evaluation_items" : evaluation_items
+    "evaluation_items" : evaluation_items,
+    "comics" : comics,
   }
   return context
 

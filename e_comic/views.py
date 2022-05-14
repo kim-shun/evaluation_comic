@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from e_comic.forms import NewUserForm
 from e_comic.forms import NewComicForm,ComicFormset
-from e_comic.services.EComicService import getChoiceItem,saveForm
+from e_comic.services.EComicService import getDispItem,saveForm
 from e_comic.DAO.EComicDao import getComicEvaluations,getDateTime,countChoiceItem,saveComicEvaluationDetail
 import csv,urllib
 
@@ -57,7 +57,7 @@ def comic_create(request):
     return render(request, 'comic_create.html', context)
 
 def test(request):
-    choice_items = getChoiceItem()
+    choice_items = getDispItem()
     if request.method == 'POST':
         input_comic_name = request.POST["comic_name"]
         input_score = request.POST["score"]

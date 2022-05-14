@@ -14,6 +14,10 @@ def choiceItem():
   evaluation_items = EvaluationItem.objects.all()
   return evaluation_items
 
+def selectComic():
+  comics = Comic.objects.all()
+  return comics
+
 def countChoiceItem():
   item_count = EvaluationItem.objects.all().count()
   return item_count

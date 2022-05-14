@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+{% load static%}
 {% block title %}テストページ{% endblock %}
+{% block head %}
+{% endblock %}
 {% block header%}
 <div>
   <a class="top_page" href="{% url 'e_comic:index' %}">トップページ</a>
@@ -9,7 +12,15 @@
 {% endblock %}
 {% block content %}
 <form method="POST">{% csrf_token %}
-  <div>漫画名<input name="comic_name" type="text"/></div>
+  <div>漫画名
+    <select name="comic_name">
+      <option selected>選択してください</option>
+      {% for comic in comics %}
+        <option value="{{comic.comic_name}}">{{comic.comic_name}}</option>
+      {% endfor %}
+        <option value="free_comic">自由入力</option>
+    </select>
+  </div>
   <div>評点<input type="number" name="score"/></div>
   <div>コメント<input type="text" name="comment"/></div>
   <div>
