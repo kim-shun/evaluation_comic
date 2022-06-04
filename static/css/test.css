@@ -1,0 +1,5 @@
+#free_comic_area{display: none;}
+.hide {
+  /* 表示の切り替えに使用する */
+  display: none;
+}

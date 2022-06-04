@@ -13,13 +13,14 @@
 {% block content %}
 <form method="POST">{% csrf_token %}
   <div>漫画名
-    <select name="comic_name">
+    <select id="comic_name" name="comic_name">
       <option selected>選択してください</option>
       {% for comic in comics %}
-        <option value="{{comic.comic_name}}">{{comic.comic_name}}</option>
+        <option id="comic" value="{{comic.comic_name}}">{{comic.comic_name}}</option>
       {% endfor %}
-        <option value="free_comic">自由入力</option>
+        <option id="free_comic" value="free_comic">自由入力</option>
     </select>
+    <div id= "free_comic_area"><input type="text" id="free_comic_name" name="free_comic_name"/></div>
   </div>
   <div>評点<input type="number" name="score"/></div>
   <div>コメント<input type="text" name="comment"/></div>
@@ -36,6 +37,25 @@
     {% endfor %}
   </div>
   <button type="submit">送信</button>
+
+  <!-- 表示・非表示が切り替える要素 -->
+  <ul>
+    <li class="area">北海道</li>
+    <li class="area">東京</li>
+    <li class="area">大阪</li>
+    <li class="area">兵庫</li>
+    <li class="area">京都</li>
+  </ul>
+
+  <!-- 絞り込むためのトリガー -->
+  <select class="select">
+    <option>全て</option>
+    <option>北海道</option>
+    <option>東京</option>
+    <option>大阪</option>
+    <option>兵庫</option>
+    <option>京都</option>
+  </select>
 </form>
 
 {% endblock %}
